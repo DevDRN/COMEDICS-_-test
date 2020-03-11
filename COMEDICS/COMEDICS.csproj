@@ -33,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.19.6.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,14 +52,63 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Animators\AnimationStatus.cs" />
+    <Compile Include="Animators\Animator.cs" />
+    <Compile Include="EasingFunctions.cs" />
+    <Compile Include="Effects\Bounds\BottomAnchoredHeightEffect.cs" />
+    <Compile Include="Effects\Bounds\FoldEffect.cs" />
+    <Compile Include="Effects\Bounds\HorizontalFoldEffect.cs" />
+    <Compile Include="Effects\Bounds\LeftAnchoredWidthEffect.cs" />
+    <Compile Include="Effects\Bounds\RightAnchoredWidthEffect.cs" />
+    <Compile Include="Effects\Bounds\TopAnchoredHeightEffect.cs" />
+    <Compile Include="Effects\Bounds\VerticalFoldEffect.cs" />
+    <Compile Include="Effects\Bounds\XLocationEffect.cs" />
+    <Compile Include="Effects\Bounds\YLocationEffect.cs" />
+    <Compile Include="Effects\Color\ColorChannelShiftEffect.cs" />
+    <Compile Include="Effects\Color\ColorShiftEffect.cs" />
+    <Compile Include="Effects\EffectInteractions.cs" />
+    <Compile Include="Effects\IAnimationEffect.cs" />
+    <Compile Include="Effects\Opacity\ControlFadeEffect.cs" />
+    <Compile Include="Effects\Opacity\FormFadeEffect.cs" />
+    <Compile Include="Effects\Other\FontSizeEffect.cs" />
+    <Compile Include="ExampleFoldAnimation.cs" />
+    <Compile Include="Extensions\AnimationExtensions.cs" />
+    <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Frm_ajout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Frm_ajout.Designer.cs">
+      <DependentUpon>Frm_ajout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_newco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_newco.Designer.cs">
+      <DependentUpon>Frm_newco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_recherche.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_recherche.Designer.cs">
+      <DependentUpon>Frm_recherche.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsExtension.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequetesSql.cs" />
+    <Compile Include="SPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <EmbeddedResource Include="frm_ajout.resx">
+      <DependentUpon>Frm_ajout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_newco.resx">
+      <DependentUpon>Frm_newco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_recherche.resx">
+      <DependentUpon>Frm_recherche.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +117,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +132,84 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\llu-recherche.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ligne.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\comedicslogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flehce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\flehce1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo-chu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bouton-rechercher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bouton-reinitialiser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn_recherche.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ID.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ID.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spe.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ID_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spe_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\adr_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche_ouvrir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo-chu-vert.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_add_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tool-icon_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\femme1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\back_women.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\femme11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche_fermer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
